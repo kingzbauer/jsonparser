@@ -19,5 +19,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	jsonparser.Parse(src)
+	if err := jsonparser.Parse(src); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }

@@ -30,6 +30,8 @@ func (l *Lexer) ScanTokens() ([]Token, error) {
 		}
 	}
 
+	l.tokens = append(l.tokens, Token{Type: EOF})
+
 	return l.tokens, nil
 }
 
@@ -98,7 +100,7 @@ func (l *Lexer) ScanToken() error {
 			}
 		} else {
 			return LexerError{
-				msg:  fmt.Sprintf("Unexpected character %c.", cur),
+				msg:  fmt.Sprintf("Unexpected character '%c'.", cur),
 				line: l.line,
 			}
 		}
@@ -147,7 +149,7 @@ func (l *Lexer) identifier() error {
 	}
 
 	return LexerError{
-		msg:  fmt.Sprintf("Unexpected identifier '%s'.", lexeme),
+		msg:  fmt.Sprintf("Unexpected literal '%s'.", lexeme),
 		line: l.line,
 	}
 }
@@ -186,14 +188,14 @@ func (l *Lexer) getString() error {
 
 	if l.isAtEnd() {
 		return LexerError{
-			msg:  "Unterminated string",
+			msg:  "unterminated string",
 			line: l.line,
 		}
 	}
 
 	if l.peek() == '\n' {
 		return LexerError{
-			msg:  "JSON doesn't allow newlines in strings",
+			msg:  "unterminated string.",
 			line: l.line,
 		}
 	}

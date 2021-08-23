@@ -24,6 +24,7 @@ import "fmt"
 	RightParen
 	Comma
 	Colon
+	EOF
 */
 
 //go:generate stringer -type=TokenType
@@ -43,6 +44,7 @@ const (
 	RightParen
 	Comma
 	Colon
+	EOF
 )
 
 // Token ...

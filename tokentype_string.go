@@ -19,11 +19,12 @@ func _() {
 	_ = x[RightParen-8]
 	_ = x[Comma-9]
 	_ = x[Colon-10]
+	_ = x[EOF-11]
 }
 
-const _TokenType_name = "StringNumberFalseTrueNullLeftBraceRightBraceLeftParenRightParenCommaColon"
+const _TokenType_name = "StringNumberFalseTrueNullLeftBraceRightBraceLeftParenRightParenCommaColonEOF"
 
-var _TokenType_index = [...]uint8{0, 6, 12, 17, 21, 25, 34, 44, 53, 63, 68, 73}
+var _TokenType_index = [...]uint8{0, 6, 12, 17, 21, 25, 34, 44, 53, 63, 68, 73, 76}
 
 func (i TokenType) String() string {
 	if i < 0 || i >= TokenType(len(_TokenType_index)-1) {
