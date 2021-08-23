@@ -182,7 +182,8 @@ func (l *Lexer) number() error {
 }
 
 func (l *Lexer) getString() error {
-	for l.peek() != '"' && !l.isAtEnd() && l.peek() != '\n' {
+	for (l.peek() != '"' && !l.isAtEnd() && l.peek() != '\n') ||
+		(l.previous() == '\\' && l.peek() == '"') {
 		l.advance()
 	}
 
@@ -232,6 +233,10 @@ func (l *Lexer) peekNext() byte {
 	}
 
 	return l.src[l.current+1]
+}
+
+func (l *Lexer) previous() byte {
+	return l.src[l.current-1]
 }
 
 // LexerError error encountered when lexing
