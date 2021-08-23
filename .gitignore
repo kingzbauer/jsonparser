@@ -1,2 +1,5 @@
 # vim files
 *.sw?
+
+# sample json files
+*.json
